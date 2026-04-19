@@ -1,0 +1,33 @@
+services:
+  - type: web
+    name: invoice-extractor-api
+    runtime: docker
+    plan: free
+    region: singapore
+    rootDir: backend
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/health
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GEMINI_MODEL
+        value: gemma-3-27b-it
+      - key: MAX_UPLOAD_BYTES
+        value: "10485760"
+      - key: CORS_ORIGINS
+        sync: false
+
+  - type: web
+    name: invoice-extractor-web
+    runtime: static
+    plan: free
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: ./dist
+    envVars:
+      - key: VITE_API_BASE
+        sync: false
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
