@@ -5,7 +5,7 @@ import UploadForm from "./components/UploadForm";
 import InvoiceTable from "./components/InvoiceTable";
 import SummaryTiles from "./components/SummaryTiles";
 import { extractInvoices } from "./api";
-import { downloadCsv } from "./utils/csv";
+import { downloadExcel } from "./utils/excel";
 import type { Invoice } from "./types";
 
 export default function App() {
@@ -44,7 +44,7 @@ export default function App() {
             <p>
               Upload invoice PDFs or images — we use OCR + Gemma to pull out
               vendor, totals, line items, GST split, and payment details, ready
-              to download as CSV.
+              to download as Excel.
             </p>
           </div>
         </div>
@@ -63,9 +63,9 @@ export default function App() {
           <section className="card">
             <div className="card__header-row">
               <h2 className="card__title">Extracted invoices</h2>
-              <button className="btn" onClick={() => downloadCsv(invoices)}>
+              <button className="btn" onClick={() => downloadExcel(invoices)}>
                 <Download size={16} style={{ marginRight: 6 }} />
-                Download CSV
+                Download Excel
               </button>
             </div>
             <InvoiceTable invoices={invoices} />
@@ -79,7 +79,7 @@ export default function App() {
           <div className="empty-state__title">No invoices yet</div>
           <div className="empty-state__subtitle">
             Drag in a PDF or image above, or click the drop zone to browse.
-            You'll see a summary table and can export everything as CSV.
+            You'll see a summary table and can export everything as Excel.
           </div>
         </section>
       )}

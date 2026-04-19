@@ -127,8 +127,7 @@ async def extract(files: List[UploadFile] = File(...)) -> ExtractResponse:
         ocr_text = ""
         try:
             ocr_text = _ocr_file(filename, content_type, data)
-            print(f"OCR successful for {filename}. Extracted text length: {len(ocr_text)}")
-            print(f"OCR excerpt for {filename}: {ocr_text[:]}")
+            logger.info(f"OCR successful for {filename}. Extracted text length: {len(ocr_text)}")
         except Exception as exc:  # noqa: BLE001
             logger.exception("OCR failed for %s", filename)
             invoices.append(
@@ -139,7 +138,6 @@ async def extract(files: List[UploadFile] = File(...)) -> ExtractResponse:
         try:
             extracted = extract_invoice_data(ocr_text)
             logger.info("Extraction successful for %s: %s", filename, extracted)
-            print(f"Extraction successful for {filename}: {extracted}")
         except Exception as exc:  # noqa: BLE001
             logger.exception("Extraction failed for %s", filename)
             invoices.append(

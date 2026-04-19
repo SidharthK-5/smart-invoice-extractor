@@ -1,1 +1,1 @@
-{"root":["./src/app.tsx","./src/api.ts","./src/main.tsx","./src/types.ts","./src/vite-env.d.ts","./src/components/invoicetable.tsx","./src/components/summarytiles.tsx","./src/components/uploadform.tsx","./src/utils/csv.ts"],"version":"5.9.3"}
+{"root":["./src/app.tsx","./src/api.ts","./src/main.tsx","./src/types.ts","./src/vite-env.d.ts","./src/components/invoicetable.tsx","./src/components/summarytiles.tsx","./src/components/uploadform.tsx","./src/utils/excel.ts"],"version":"5.9.3"}
